@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>
+  text {
+    text-shadow: 1px 1px 3px black;
+  }
+</style>
+<text y=".9em" font-size="90">🛰️</text>
+</svg>
