@@ -15,21 +15,50 @@
 </head>
 <body>
   <div class="container">
-    <label for="lambda">Wavelength (mm)</label>
-    <input type="number" id="lambda" value="20"></input>
-    <br>
+    <div class="controls">
+      <label for="wavelength">Wavelength</label>
+      <br>
+      <div>
+        <input type="range" id="wavelength" value="20" min="5" max="100" step="1"></input>
+        <span class="display" data-value="wavelength"></span>mm
+      </div>
+      <br>
 
-    <label for="separation">Separation of transmitters (wavelengths)</label>
-    <input type="number" id="separation" value="0.5" step="0.5"></input>
-    <br>
+      <label for="separation">Separation of transmitters</label>
+      <br>
+      <div>
+        <input type="range" id="separation" value="0.5" min="0.1" max="2" step="0.025"></input>
+        <span class="display" data-value="separation"></span> wavelengths
+      </div>
+      <br>
 
-    <label for="transmitters">Number of transmitters</label>
-    <input type="number" id="transmitters" value="5"></input>
-    <br>
+      <label for="transmitters">Number of transmitters</label>
+      <br>
+      <div>
+        <input type="range" id="transmitters" value="0" min="2" max="15"></input>
+        <span class="display" data-value="transmitters"></span>
+      </div>
+      <br>
 
-    <label for="distance">Receiver distance (m)</label>
-    <input type="number" id="distance" value="100"></input>
-    <br>
+      <label for="transmitters">Transmission angle</label>
+      <br>
+      <div>
+        <input type="range" id="transmitAngle" value="0" min="-90" max="90"></input>
+        <span class="display" data-value="transmitAngle"></span> degrees
+      </div>
+      <p id="phase-shift"></p>
+
+      <label for="distance">Receiver distance</label>
+      <br>
+      <div>
+        <input type="range" id="distance" value="100" min="20" max="1000"></input>
+        <span class="display" data-value="distance"></span>m
+      </div>
+      <br>
+
+      <canvas id="canvas" height="200" width="400"></canvas>
+    </div>
+
 
     <div class="ct-chart ct-perfect-fifth"></div>
   </div>
