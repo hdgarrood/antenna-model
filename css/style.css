@@ -5,16 +5,19 @@
 
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .controls {
   display: flex;
   flex-direction: column;
+  flex: 1 1 min-content;
   align-items: flex-start;
 }
 
 label {
   margin-top: 8px;
+  font-weight: bold;
 }
 
 canvas {

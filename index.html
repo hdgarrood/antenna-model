@@ -24,6 +24,14 @@
       </div>
       <br>
 
+      <label for="distance">Receiver distance</label>
+      <br>
+      <div>
+        <input type="range" id="distance" value="100" min="20" max="1000"></input>
+        <span class="display" data-value="distance"></span>m
+      </div>
+      <br>
+
       <label for="separation">Separation of transmitters</label>
       <br>
       <div>
@@ -32,11 +40,19 @@
       </div>
       <br>
 
-      <label for="transmitters">Number of transmitters</label>
+      <label for="transmitterGroups">Number of transmitter groups</label>
       <br>
       <div>
-        <input type="range" id="transmitters" value="5" min="2" max="15"></input>
-        <span class="display" data-value="transmitters"></span>
+        <input type="range" id="transmitterGroups" value="6" min="2" max="15"></input>
+        <span class="display" data-value="transmitterGroups"></span>
+      </div>
+      <br>
+
+      <label for="transmittersPerGroup">Number of transmitters per group</label>
+      <br>
+      <div>
+        <input type="range" id="transmittersPerGroup" value="10" min="1" max="20"></input>
+        <span class="display" data-value="transmittersPerGroup"></span>
       </div>
       <br>
 
@@ -46,17 +62,29 @@
         <input type="range" id="transmitAngle" value="0" min="-90" max="90"></input>
         <span class="display" data-value="transmitAngle"></span> degrees
       </div>
-      <p id="phase-shift"></p>
 
-      <label for="distance">Receiver distance</label>
-      <br>
+      <label for="groupPhaseShiftFunc">Group phase shift function</label>
+      <p>
+        This JavaScript function defines the phase shift between two adjacent
+        groups.  It should return whole turns, i.e. 1 means "in phase" and 0.5
+        means "in antiphase".
+      </p>
       <div>
-        <input type="range" id="distance" value="100" min="20" max="1000"></input>
-        <span class="display" data-value="distance"></span>m
+        <textarea type="textarea" id="groupPhaseShiftFunc" rows=20 cols=60>// imagine a right-angled triangle where the hypotenuse is the line
+// connecting two adjacent transmitters
+let hyp = params.separation;
+// theta is the angle between the transmit beam and the x-axis (along which
+// the transmitters lie).
+let theta = deg2rad(90 - params.transmitAngle);
+// This is the difference that the signals from two adjacent transmitters
+// have to travel to reach a certain point, in wavelengths
+let delta = params.separation * Math.cos(theta);
+return group * delta;
+</textarea>
       </div>
-      <br>
 
-      <canvas id="canvas" height="200" width="400"></canvas>
+      Transmitter group:
+      <canvas id="transmitter-group-canvas" height="200" width="400"></canvas>
     </div>
 
 
