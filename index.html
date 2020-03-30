@@ -65,20 +65,21 @@
 
       <label for="groupPhaseShiftFunc">Group phase shift function</label>
       <p>
-        This JavaScript function defines the phase shift between two adjacent
-        groups.  It should return whole turns, i.e. 1 means "in phase" and 0.5
-        means "in antiphase".
+        This JavaScript function defines the phase shift for each group. It
+        should return whole turns, i.e. 1 means "in phase" and 0.5 means "in
+        antiphase".
       </p>
       <div>
-        <textarea type="textarea" id="groupPhaseShiftFunc" rows=20 cols=60>// imagine a right-angled triangle where the hypotenuse is the line
-// connecting two adjacent transmitters
-let hyp = params.separation;
-// theta is the angle between the transmit beam and the x-axis (along which
-// the transmitters lie).
+        <textarea type="textarea" id="groupPhaseShiftFunc" rows=20 cols=60>// imagine a right-angled triangle where the hypotenuse is
+// the line connecting the centre points of two adjacent
+// transmitter groups
+let hyp = params.separation * params.transmittersPerGroup;
+// theta is the angle between the transmit beam and the
+// x-axis (along which the transmitters lie).
 let theta = deg2rad(90 - params.transmitAngle);
 // This is the difference that the signals from two adjacent transmitters
 // have to travel to reach a certain point, in wavelengths
-let delta = params.separation * Math.cos(theta);
+let delta = hyp * Math.cos(theta);
 return group * delta;
 </textarea>
       </div>

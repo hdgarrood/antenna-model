@@ -111,8 +111,20 @@ function drawChart() {
     };
   });
   window.chartData = chartData;
+  let maxY = chartData.map(p => p.y).reduce((a,b) => Math.max(a,b));
   new Chartist.Line('.ct-chart', {
-    series: [chartData]
+    series: [
+      {
+        name: 'data',
+        data: chartData,
+      }, {
+        name: 'angle',
+        data: [
+          { x: init_params.transmitAngle - 2, y: 2 * maxY },
+          { x: init_params.transmitAngle + 2, y: 2 * maxY }
+        ]
+      }
+    ]
   }, {
     axisX: {
       type: Chartist.FixedScaleAxis,
@@ -122,7 +134,14 @@ function drawChart() {
     },
     axisY: {
       type: Chartist.AutoScaleAxis,
+      high: Math.ceil(maxY),
       integerOnly: true
+    },
+    series: {
+      'angle': {
+        showArea: true,
+        showPoint: false
+      }
     }
   });
 }
